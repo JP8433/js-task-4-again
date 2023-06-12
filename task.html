@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Page Title</title>
+	</head>
+	<body>
+		<script> 
+		let obj1 = { name: "Sheldon", age: 27 };
+let obj2 = { age: 38, name: "Howard" };
+
+// Convert JSON objects to strings
+let obj1String = JSON.stringify(obj1);
+let obj2String = JSON.stringify(obj2);
+
+// Compare the string representations for equality
+if (obj1String === obj2String) {
+  console.log("The JSON objects have the same properties.");
+} else {
+  console.log("The JSON objects have different properties.");
+}
+
+
+fetch('https://restcountries.com/v3.1/all')
+  .then(response => response.json())
+  .then(data => {
+    // Display country flags
+    console.log('Country Flags:');
+    data.forEach(country => {
+      console.log(country.flags.png);
+    });
+
+    // Display country names, regions, sub-regions, and populations
+    console.log('\nCountry Details:');
+    data.forEach(country => {
+      console.log('Name:', country.name.common);
+      console.log('Region:', country.region);
+      console.log('Sub-Region:', country.subregion);
+      console.log('Population:', country.population);
+      console.log('---------------------');
+    });
+  })
+  .catch(error => {
+    console.log('Error:', error);
+  });
+
+</script>
+	</body>
+</html>
